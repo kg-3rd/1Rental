@@ -9,6 +9,8 @@ import {
 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 
+// TODO: RenterDashboard will render "Continue to Payment" for accepted bookings,
+// which navigates to /payments/checkout/:bookingId (placeholder route).
 const RenterDashboard = () => {
   const [bookings, setBookings] = useState([]);
   const [stats, setStats] = useState({
