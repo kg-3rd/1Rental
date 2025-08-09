@@ -148,35 +148,35 @@ const EquipmentDetails = () => {
     
     if (!user || !equipment) return;
 
-    // Prevent self-booking
-    if (user.id === equipment.user_id) {
-      alert('You cannot book your own equipment');
-      return;
-    }
-
-    // Validate dates
-    const startDate = new Date(bookingData.startDate);
-    const endDate = new Date(bookingData.endDate);
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    if (startDate < today) {
-      alert('Start date cannot be in the past');
-      return;
-    }
-
-    if (startDate >= endDate) {
-      alert('End date must be after start date');
-      return;
-    }
-
-    if (duration < 1) {
-      alert('Minimum booking duration is 1 day');
-      return;
-    }
-
     try {
       setSubmitting(true);
+
+      // Prevent self-booking
+      if (user.id === equipment.user_id) {
+        alert('You cannot book your own equipment');
+        return;
+      }
+
+      // Validate dates
+      const startDate = new Date(bookingData.startDate);
+      const endDate = new Date(bookingData.endDate);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      if (startDate < today) {
+        alert('Start date cannot be in the past');
+        return;
+      }
+
+      if (startDate >= endDate) {
+        alert('End date must be after start date');
+        return;
+      }
+
+      if (duration < 1) {
+        alert('Minimum booking duration is 1 day');
+        return;
+      }
 
       const subtotal = duration * equipment.rate;
       const serviceFee = Math.round(subtotal * 0.05); // 5% service fee
